@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center_vertical">
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/MatriculaEditText"
+        android:layout_marginTop="162dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/matricula"
+        android:id="@+id/textView"
+        android:layout_alignBottom="@+id/MatriculaEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="47dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/senha"
+        android:id="@+id/SenhaTextView"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberPassword"
+        android:ems="10"
+        android:id="@+id/SenhaEditText"
+        android:layout_below="@+id/SenhaTextView"
+        android:layout_alignLeft="@+id/MatriculaEditText"
+        android:layout_alignStart="@+id/MatriculaEditText"
+        android:maxLength="6"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:id="@+id/button"
+        android:layout_below="@+id/SenhaEditText"
+        android:layout_marginTop="37dp"
+        android:onClick="logIn"
+        android:layout_alignLeft="@+id/SenhaEditText"
+        android:layout_alignStart="@+id/SenhaEditText"
+        android:layout_alignRight="@+id/SenhaEditText"
+        android:layout_alignEnd="@+id/SenhaEditText" />
+
+
+</RelativeLayout>

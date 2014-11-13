@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MangabaTag</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Tipo_login">Tipo de Login</string>
+    <string name="matricula">Matricula</string>
+    <string name="senha">Senha</string>
+    <string name="login">Login</string>
+    <string name="Erro_Autenticacao">Erro de autenticação</string>
+    <string name="Campo_vazio">Existe um campo em branco</string>
+    <string name="nota">nota</string>
+    <string name="horario">horario</string>
+    <string name="Nfaltas">Nfaltas</string>
+    <string name="Nome_da_materia">Nome da materia</string>
+</resources>

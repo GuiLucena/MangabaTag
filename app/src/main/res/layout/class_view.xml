@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="20dp">
+
+        <TableRow>
+            <TextView
+                android:text="Faltas:"/>
+            <TextView
+                android:text="@string/Nfaltas"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/numberFaults"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="20dp">
+           <TextView
+               android:text="Horarios:"/>
+            <TextView
+                android:text="@string/horario"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/classGrad"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="20dp">
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TextView android:text="Notas:"/>
+                <TableRow>
+                    <TextView android:text="1 gq"/>
+                    <TextView
+                        android:text="@string/nota"
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/firstGq" />
+                </TableRow>
+                <TableRow>
+                    <TextView android:text="2 gq"/>
+                    <TextView
+                        android:text="@string/nota"
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/secondGq" />
+                </TableRow>
+                <TableRow>
+                    <TextView android:text="final"/>
+                    <TextView
+                        android:text="@string/nota"
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/finalGq" />
+                </TableRow>
+            </TableLayout>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

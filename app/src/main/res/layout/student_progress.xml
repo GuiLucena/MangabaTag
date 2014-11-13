@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_marginTop="20dp">
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textAppearance="?android:attr/textAppearanceLarge"
+           android:text="Faltas:"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textAppearance="?android:attr/textAppearanceLarge"
+           android:text="nfaltas"
+           android:layout_marginLeft="10dp"
+           android:id="@+id/absences" />
+       </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Notas:"
+        android:layout_marginTop="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TableRow>
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="1gq:"/>
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="nota"
+                    android:id="@+id/firstGQgrad"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="2gq:"/>
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="nota"
+                    android:id="@+id/secondGqGQgrad"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="final:"/>
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="nota"
+                    android:id="@+id/finalGQgrad"/>
+            </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Situacao do aluno:"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="situacao"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/studentSituation"/>
+        </LinearLayout>
+
+
+
+
+</LinearLayout>
