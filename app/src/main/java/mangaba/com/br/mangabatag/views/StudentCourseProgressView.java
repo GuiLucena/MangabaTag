@@ -8,7 +8,7 @@ import android.widget.TextView;
 import mangaba.com.br.mangabatag.R;
 import mangaba.com.br.mangabatag.controller.ModelController;
 import mangaba.com.br.mangabatag.models.Student;
-import mangaba.com.br.mangabatag.models.StudentCourseProgress;
+import mangaba.com.br.mangabatag.models.Progress;
 
 /**
  * Created by GuilhermeLucena on 13/09/2014.
@@ -16,7 +16,7 @@ import mangaba.com.br.mangabatag.models.StudentCourseProgress;
 public class StudentCourseProgressView extends Activity {
 
     ModelController model;
-    StudentCourseProgress studentData;
+    Progress studentData;
     TextView horario;
     TextView faltas;
     TextView firstGq;

@@ -3,9 +3,10 @@ package mangaba.com.br.mangabatag.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import mangaba.com.br.mangabatag.models.History;
 import mangaba.com.br.mangabatag.models.Lesson;
+import mangaba.com.br.mangabatag.models.Progress;
 import mangaba.com.br.mangabatag.models.Student;
-import mangaba.com.br.mangabatag.models.StudentCourseProgress;
 import mangaba.com.br.mangabatag.models.Teatcher;
 
 /**
@@ -16,7 +17,8 @@ public class TestAdapter {
     public TestAdapter() {
     }
 
-    private Student generateStudent(String name, String enrolment, List<StudentCourseProgress> history) {
+    private Student generateStudent(String name, String enrolment, List<Progress> progresses) {
+        History history = new History(progresses);
         Student student = new Student(name, enrolment, history);
         return student;
     }
@@ -26,22 +28,22 @@ public class TestAdapter {
         return teatcher;
     }
 
-    private List<StudentCourseProgress> generateStudentCurseProgress() {
+    private List<Progress> generateStudentCurseProgress() {
 
         Lesson lessonAux;
-        List<StudentCourseProgress> studentCourseProgresses = new ArrayList<StudentCourseProgress>();
+        List<Progress> progresses = new ArrayList<Progress>();
         lessonAux = generateLesson("programação orientada a gambiarra", "TJ", "A", "B");
-        studentCourseProgresses.add(new StudentCourseProgress(10, lessonAux));
+        progresses.add(new Progress(10, lessonAux));
         lessonAux = generateLesson("Arquitetura e organizaçao de pcs", "Sergio Decepcionado", "C", "D");
-        studentCourseProgresses.add(new StudentCourseProgress(18, lessonAux));
+        progresses.add(new Progress(18, lessonAux));
         lessonAux = generateLesson("metodos numeros", "rubro negro", "E", "F");
-        studentCourseProgresses.add(new StudentCourseProgress(1, lessonAux));
+        progresses.add(new Progress(1, lessonAux));
         lessonAux = generateLesson("praticas de nada", "almir", "I", "J");
-        studentCourseProgresses.add(new StudentCourseProgress(7, lessonAux));
+        progresses.add(new Progress(7, lessonAux));
         lessonAux = generateLesson("Plantacao de arvores", "TJ", "K", "L");
-        studentCourseProgresses.add(new StudentCourseProgress(8, lessonAux));
+        progresses.add(new Progress(8, lessonAux));
 
-        return studentCourseProgresses;
+        return progresses;
     }
 
     private Lesson generateLesson(String name, String teatcher, String startHour, String endHour) {
@@ -49,15 +51,15 @@ public class TestAdapter {
         return lesson;
     }
 
-    private StudentCourseProgress generateStudentProgress(Lesson lesson, int absences) {
-        StudentCourseProgress studentProgress = new StudentCourseProgress(absences, lesson);
+    private Progress generateStudentProgress(Lesson lesson, int absences) {
+        Progress studentProgress = new Progress(absences, lesson);
         return studentProgress;
     }
 
     public Student studentLogin(String name, String enrolment) {
-        List<StudentCourseProgress> studentCourseProgresses = new ArrayList<StudentCourseProgress>();
-        studentCourseProgresses = this.generateStudentCurseProgress();
-        Student student = generateStudent(name, enrolment, studentCourseProgresses);
+        List<Progress> progresses = new ArrayList<Progress>();
+        progresses = this.generateStudentCurseProgress();
+        Student student = generateStudent(name, enrolment, progresses);
         return student;
     }
 }

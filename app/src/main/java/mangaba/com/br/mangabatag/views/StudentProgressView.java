@@ -11,13 +11,13 @@ import mangaba.com.br.mangabatag.R;
 import mangaba.com.br.mangabatag.controller.ModelController;
 import mangaba.com.br.mangabatag.models.Lesson;
 import mangaba.com.br.mangabatag.models.Student;
-import mangaba.com.br.mangabatag.models.StudentCourseProgress;
+import mangaba.com.br.mangabatag.models.Progress;
 
 /**
  * Created by GuilhermeLucena on 06/10/2014.
  */
 public class StudentProgressView extends Activity {
-    private StudentCourseProgress studentData;
+    private Progress studentData;
     private ModelController model;
 
     @Override
@@ -43,7 +43,7 @@ public class StudentProgressView extends Activity {
     }
 
 
-    private StudentCourseProgress getStudentData(String lessonName, String studentName) {
+    private Progress getStudentData(String lessonName, String studentName) {
         List<Lesson> lessons = this.model.getLessons();
 
         for (Lesson lesson : lessons) {

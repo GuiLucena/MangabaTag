@@ -9,16 +9,16 @@ public class Student extends User {
 
     History history;
 
-    public Student(String name, String enrolment, List<StudentCourseProgress> studentProgress) {
+    public Student(String name, String enrolment, History history) {
         super(name, enrolment);
-        this.history = new History(studentProgress);
+        this.history = history;
     }
 
-    public List<StudentCourseProgress> getProgresses() {
+    public List<Progress> getProgresses() {
         return this.history.getCourseProgresses();
     }
 
-    public StudentCourseProgress getSingleProgress(String lessonName) {
+    public Progress getSingleProgress(String lessonName) {
         return this.history.getSingleProgress(lessonName);
     }
 

@@ -38,6 +38,9 @@ public class LoginView extends Activity {
         } else {
             try {
                 loginController.login(this, matricula, "teste");
+                Toast.makeText(this, "Logado como" + model.getUser().getName(), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, LessonsListView.class));
+                finish();
             } catch (Exception e) {
                 if (e instanceof InvalidPasswordExeption) {
                     Toast.makeText(this, "Senha ou matricula invalidas", Toast.LENGTH_SHORT).show();
@@ -45,9 +48,6 @@ public class LoginView extends Activity {
                     Toast.makeText(this, "Falha ao obter informações", Toast.LENGTH_SHORT).show();
                 }
             }
-//            Toast.makeText(this, "Logado como" + model.getUser().getName(), Toast.LENGTH_SHORT).show();
-            //startActivity(new Intent(this, LessonsListView.class));
-            //finish();
         }
     }
 

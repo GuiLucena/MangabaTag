@@ -1,7 +1,5 @@
 package mangaba.com.br.mangabatag.models;
 
-import android.util.Log;
-
 import java.util.List;
 
 /**
@@ -9,19 +7,19 @@ import java.util.List;
  */
 public class History {
 
-    List<StudentCourseProgress> courseProgresses;
+    List<Progress> courseProgresses;
 
-    public History(List<StudentCourseProgress> courseProgresses) {
+    public History(List<Progress> courseProgresses) {
         this.courseProgresses = courseProgresses;
     }
 
-    public List<StudentCourseProgress> getCourseProgresses() {
+    public List<Progress> getCourseProgresses() {
         return courseProgresses;
     }
 
-    public StudentCourseProgress getSingleProgress(String lessonName) {
+    public Progress getSingleProgress(String lessonName) {
         if (this.courseProgresses != null) {
-            for (StudentCourseProgress progress : this.courseProgresses) {
+            for (Progress progress : this.courseProgresses) {
                 if (progress.toString().equals(lessonName)) {
                     return progress;
                 }

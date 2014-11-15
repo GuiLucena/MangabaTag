@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by GuilhermeLucena on 20/09/2014.
  */
-public class StudentCourseProgress {
+public class Progress {
 
     private Integer absences;
     private Integer firstTest;
@@ -15,7 +15,7 @@ public class StudentCourseProgress {
     private CourseSituation courseSituation;
     private Lesson lesson;
 
-    public StudentCourseProgress(Integer absences, Lesson lesson) {
+    public Progress(Integer absences, Lesson lesson) {
 
         this.lesson = lesson;
         this.absences = absences;
