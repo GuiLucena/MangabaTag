@@ -22,10 +22,11 @@ public class LoginController {
     public void login(Context ctx, String enrolment, String password) throws Exception {
         ConnectionAdapter adapter = new ConnectionAdapter();
         adapter.requestUser(ctx,enrolment,password);
-        ModelController modelController = ModelController.getInstance();
-        if(modelController.getUser() == null){
-            Log.d("aqui","324432sdjlflkjlkjlkjslakdjkdafjlkfdsa");
-        }
+        //adapter.requestUser(ctx,enrolment,password);
+       // ModelController modelController = ModelController.getInstance();
+       // if(modelController.getUser() == null){
+      //      Log.d("aqui","324432sdjlflkjlkjlkjslakdjkdafjlkfdsa");
+      //  }
     }
 
 

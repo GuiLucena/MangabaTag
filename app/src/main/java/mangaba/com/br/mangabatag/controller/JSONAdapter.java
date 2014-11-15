@@ -25,7 +25,7 @@ public class JSONAdapter  {
 
     }
 
-    private boolean authenticateJSON(JSONObject jsonObject){
+    public boolean authenticateJSON(JSONObject jsonObject){
         try {
             if (jsonObject.getString("status").equals("OK")) {
                 return true;
@@ -48,7 +48,7 @@ public class JSONAdapter  {
                 this.parseStudent(jsonObject.getJSONObject("user"));
             }
         }catch (JSONException e){
-            throw new Exception();
+
         }
     }
 
@@ -70,9 +70,7 @@ public class JSONAdapter  {
     public void parseClassrooms(JSONArray classrooms) throws JSONException {
         JSONObject turmaJson;
         for (int i = 0; i < classrooms.length(); i++) {
-            turmaJson = classrooms.getJSONObject(i);
-            // Lesson lesson = Lesson.parseJSON(turmaJson);
-            // this.turmas.add(lesson);
+
         }
     }
 

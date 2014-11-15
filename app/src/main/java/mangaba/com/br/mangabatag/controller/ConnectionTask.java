@@ -3,6 +3,7 @@ package mangaba.com.br.mangabatag.controller;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.NameValuePair;
 import org.json.JSONObject;
