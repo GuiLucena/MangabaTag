@@ -7,6 +7,6 @@ import org.json.JSONObject;
  */
 public interface OnConnectionFinished {
 
-    public void onConnectionFinished(JSONObject response);
+    public void onConnectionFinished(JSONObject response) throws Exception;
 
 }

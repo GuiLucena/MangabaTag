@@ -16,32 +16,39 @@ import mangaba.com.br.mangabatag.util.web.interfaces.OnConnectionFinished;
 /**
  * Created by GuilhermeLucena on 20/09/2014.
  */
-public class DataAdapter implements OnConnectionFinished {
+public class JSONAdapter  {
 
     private List<Lesson> turmas;
 
 
-    public DataAdapter() {
-        ConnectionTask tk = new ConnectionTask(null, this, "http://192.168.25.62:8080/poo/me?token=testemaroto",
-                ConnectionMethod.GET);
-        turmas = new ArrayList<Lesson>();
-        tk.execute();
+    public JSONAdapter() {
 
     }
 
-    @Override
-    public void onConnectionFinished(JSONObject response) {
-        if (response == null) {
-            return;
-        }
+    private boolean authenticateJSON(JSONObject jsonObject){
         try {
-            if (response.getString("userType") == UserType.TEACHER.toString()) {
-                this.parseTeacher(response.getJSONObject("user"));
-            } else if (response.getString("userType") == UserType.STUDENT.toString()) {
-                this.parseStudent(response.getJSONObject("user"));
+            if (jsonObject.getString("status").equals("OK")) {
+                return true;
             }
-        } catch (Exception e) {
-            Log.e("foda-se", e.getMessage(), e);
+            else{
+                return false;
+            }
+        }catch(JSONException exeption){
+
+        }
+        return false;
+    }
+
+    public void parseUser(JSONObject jsonObject)throws Exception{
+        try {
+            if (jsonObject.getString("userType").equals(UserType.STUDENT.toString())){
+               this.parseTeacher(jsonObject.getJSONObject("user"));
+            }
+            else if(jsonObject.getString("userType") == UserType.TEACHER.toString()){
+                this.parseStudent(jsonObject.getJSONObject("user"));
+            }
+        }catch (JSONException e){
+            throw new Exception();
         }
     }
 
@@ -50,7 +57,7 @@ public class DataAdapter implements OnConnectionFinished {
         try {
             JSONObject history = user.getJSONObject("history");
 
-        }catch(JSONException e){
+        } catch (JSONException e) {
 
         }
     }
@@ -67,10 +74,6 @@ public class DataAdapter implements OnConnectionFinished {
             // Lesson lesson = Lesson.parseJSON(turmaJson);
             // this.turmas.add(lesson);
         }
-    }
-
-    public void parseOtherFuckingThing(JSONObject job) {
-
     }
 
     private enum UserType {

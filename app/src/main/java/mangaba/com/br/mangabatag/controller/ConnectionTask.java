@@ -77,7 +77,11 @@ public class ConnectionTask extends AsyncTask<List<NameValuePair>, JSONObject, J
         }
 
         if (this.callback != null) {
-            this.callback.onConnectionFinished(jsonObject);
+            try {
+                this.callback.onConnectionFinished(jsonObject);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
