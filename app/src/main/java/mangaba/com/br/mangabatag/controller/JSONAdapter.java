@@ -11,6 +11,7 @@ import mangaba.com.br.mangabatag.models.History;
 import mangaba.com.br.mangabatag.models.Lesson;
 import mangaba.com.br.mangabatag.models.Progress;
 import mangaba.com.br.mangabatag.models.Student;
+import mangaba.com.br.mangabatag.models.User;
 
 /**
  * Created by GuilhermeLucena on 20/09/2014.
@@ -37,20 +38,21 @@ public class JSONAdapter {
         return false;
     }
 
-    public void parseUser(JSONObject jsonObject) {
+    public User parseUser(JSONObject jsonObject) {
         try {
             if (jsonObject.getString("type").equals("br.unicap.projeto.model.Student")) {
-                this.parseStudent(jsonObject.getJSONObject("student"));
+                return this.parseStudent(jsonObject.getJSONObject("student"));
             } else if (jsonObject.getString("userType") == UserType.TEACHER.toString()) {
                 //TODO criar instanciamento de teatcher
-                this.parseStudent(jsonObject.getJSONObject("teatcher"));
+                return this.parseStudent(jsonObject.getJSONObject("teatcher"));
             }
         } catch (Exception e) {
 
         }
+        return null;
     }
 
-    private void parseStudent(JSONObject user) throws Exception {
+    private Student parseStudent(JSONObject user) throws Exception {
 
         JSONObject histroyJson = user.getJSONObject("history");
         History history = this.parseHistory(histroyJson);
@@ -59,6 +61,7 @@ public class JSONAdapter {
         Student student = new Student(name,enrolment,history);
         ModelController controller = ModelController.getInstance();
         controller.setUser(student);
+        return student;
     }
 
     private History parseHistory(JSONObject history) throws Exception {
@@ -80,9 +83,10 @@ public class JSONAdapter {
         return progressNew;
     }
 
-    private void parseTeacher(JSONObject user) throws JSONException {
+    private User parseTeacher(JSONObject user) throws JSONException {
         JSONObject classrooms = user.getJSONObject("classrooms");
         this.parseClassroom(classrooms);
+        return null;
     }
 
     public Lesson parseClassroom(JSONObject classrooms) throws JSONException {

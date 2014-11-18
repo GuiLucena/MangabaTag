@@ -21,18 +21,23 @@ import mangaba.com.br.mangabatag.util.web.interfaces.OnConnectionFinished;
 /**
  * Created by GuilhermeLucena on 15/11/2014.
  */
-public class ConnectionAdapter implements OnConnectionFinished {
+public class ConnectionAdapter extends Thread implements OnConnectionFinished {
 
+    private UserReceiver listener;
 
-    public void requestUser(Context ctx, String enrolment, String password) throws Exception {
+    public ConnectionAdapter(UserReceiver listener) {
+        this.listener = listener;
+    }
+
+    public void requestUser(UserReceiver listener, String enrolment, String password) throws Exception {
       // if (!isConected(ctx)) {
             //throw new DataExeption();
        //} else {
-           requestUserJson(enrolment,password);
+           requestUserJson(listener, enrolment,password);
        //}
     }
 
-    private void requestUserJson(String enrolment, String password) throws Exception {
+    private void requestUserJson(UserReceiver listener, String enrolment, String password) throws Exception {
         List<NameValuePair> parameterList = new ArrayList<NameValuePair>();
         parameterList.add(new BasicNameValuePair("enrollment", enrolment));
         parameterList.add(new BasicNameValuePair("password", password));
@@ -40,7 +45,6 @@ public class ConnectionAdapter implements OnConnectionFinished {
         ConnectionTask tk = new ConnectionTask(null, this, "http://luish.me:4242/poo/authenticate",
                 ConnectionMethod.POST);
         tk.execute(parameterList);
-
     }
 
     private boolean isConected(Context ctx) {
@@ -68,7 +72,7 @@ public class ConnectionAdapter implements OnConnectionFinished {
         if(adapter.authenticateJSON(user)){
             Log.e(getClass().getCanonicalName(), user.toString());
             try {
-                adapter.parseUser(user);
+                listener.onUserReceived(adapter.parseUser(user));
             }catch(Exception e){
 
             }

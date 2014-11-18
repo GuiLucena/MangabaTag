@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 import mangaba.com.br.mangabatag.R;
 import mangaba.com.br.mangabatag.controller.ModelController;
-import mangaba.com.br.mangabatag.models.Student;
 import mangaba.com.br.mangabatag.models.Progress;
+import mangaba.com.br.mangabatag.models.Student;
 
 /**
  * Created by GuilhermeLucena on 13/09/2014.

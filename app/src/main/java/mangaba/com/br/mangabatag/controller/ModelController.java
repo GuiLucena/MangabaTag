@@ -14,7 +14,7 @@ public class ModelController {
     private static ModelController instance;
     private User user;
     private List<Lesson> lessons;
-
+    private int flag;
     private ModelController() {
     }
 

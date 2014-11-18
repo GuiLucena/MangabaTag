@@ -10,8 +10,8 @@ import java.util.List;
 import mangaba.com.br.mangabatag.R;
 import mangaba.com.br.mangabatag.controller.ModelController;
 import mangaba.com.br.mangabatag.models.Lesson;
-import mangaba.com.br.mangabatag.models.Student;
 import mangaba.com.br.mangabatag.models.Progress;
+import mangaba.com.br.mangabatag.models.Student;
 
 /**
  * Created by GuilhermeLucena on 06/10/2014.
