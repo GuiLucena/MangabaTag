@@ -65,6 +65,9 @@ public class ConnectionAdapter extends Thread implements OnConnectionFinished {
         if(response != null){
             this.createUser(response);
         }
+        else{
+            listener.onUserReceived(null);
+        }
     }
 
     private void createUser(JSONObject user){
