@@ -25,6 +25,11 @@
         <activity
             android:name=".views.StudentCourseProgressView"
             android:label="MangabaTag"/>
+        <activity android:name=".views.StudentsListView"
+            android:label="MangabaTag"/>
+        <activity android:name=".views.StudentProgressView"
+            android:label="MangabaTag"/>
+
     </application>
 
 </manifest>

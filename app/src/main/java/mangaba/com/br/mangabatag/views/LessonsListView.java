@@ -52,12 +52,12 @@ public class LessonsListView extends ListActivity implements OnItemClickListener
                 Log.e("erro aluno classe", exeption.getMessage(), exeption);
             }
         } else {
-            Intent intent = new Intent(this, StudentListView.class);
+            Intent intent = new Intent(this, StudentsListView.class);
             intent.putExtra("lessonName", lesson.getName());
             try {
                 startActivity(intent);
             } catch (Exception exeption) {
-                Log.e("erro professor classe", exeption.getMessage(), exeption);
+                Log.d("erro professor classe", exeption.getMessage(), exeption);
             }
         }
 

@@ -1,5 +1,6 @@
 package mangaba.com.br.mangabatag.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,11 @@ public class History {
 
     public History(List<Progress> courseProgresses) {
         this.courseProgresses = courseProgresses;
+    }
+
+    public History(Progress progress){
+        this.courseProgresses = new ArrayList<Progress>();
+        this.courseProgresses.add(progress);
     }
 
     public List<Progress> getCourseProgresses() {

@@ -8,7 +8,7 @@ import mangaba.com.br.mangabatag.views.LoginView;
 /**
  * Created by GuilhermeLucena on 27/09/2014.
  */
-public class LoginController implements UserReceiver{
+public class LoginController implements UserReceiver {
 
     private LoginView view;
 
@@ -20,8 +20,17 @@ public class LoginController implements UserReceiver{
         if (enrolment.equals("") || password.equals("")) {
             throw new InvalidPasswordExeption("invalid passoword");
         }
-        ConnectionAdapter adapter = new ConnectionAdapter(this);
-        adapter.requestUser(this, enrolment, password);
+        if (enrolment.equals("1234") && password.equals("teste")) {
+            this.loginTeatcher(enrolment);
+        } else {
+            ConnectionAdapter adapter = new ConnectionAdapter(this);
+            adapter.requestUser(this, ctx, enrolment, password);
+        }
+    }
+
+    private void loginTeatcher(String enrolment) {
+        TestAdapter adapter = new TestAdapter();
+        adapter.LoginTeatcher(this, enrolment);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package mangaba.com.br.mangabatag.views;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +19,7 @@ public class LoginView extends Activity {
 
     private EditText matriculaEdit;
     private EditText senhaEdit;
-    private AlertDialog aDialog;
+    private ProgressDialog pDialog;
     private ModelController model;
 
     @Override
@@ -37,11 +37,7 @@ public class LoginView extends Activity {
         LoginController loginController = new LoginController(this);
 
         try {
-            AlertDialog.Builder adb = new AlertDialog.Builder(this);
-            adb.setTitle("Carregando...");
-            adb.setCancelable(false);
-            this.aDialog = adb.create();
-            this.aDialog.show();
+            this.launchProgressDialog(this);
             loginController.login(this, matricula, "teste");
         } catch (Exception e) {
             if (e instanceof InvalidPasswordExeption) {
@@ -53,7 +49,7 @@ public class LoginView extends Activity {
     }
 
     public void updateView(User user) {
-        this.aDialog.dismiss();
+        this.pDialog.dismiss();
         if (user != null) {
             Toast.makeText(this, "Logado como " + model.getUser().getName(), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, LessonsListView.class));
@@ -61,6 +57,11 @@ public class LoginView extends Activity {
         } else {
             Toast.makeText(this, "Falha ao obter informações", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void launchProgressDialog(LoginView v){
+        this.pDialog = ProgressDialog.show(this,"Aguarde","carregando...",true);
+        this.pDialog.setCancelable(false);
     }
 
 }

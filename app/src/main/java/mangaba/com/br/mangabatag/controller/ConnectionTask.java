@@ -3,7 +3,6 @@ package mangaba.com.br.mangabatag.controller;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.apache.http.NameValuePair;
 import org.json.JSONObject;
@@ -30,20 +29,6 @@ public class ConnectionTask extends AsyncTask<List<NameValuePair>, JSONObject, J
         this.url = url;
         this.method = method;
         this.callback = callback;
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        if (context != null) {
-            AlertDialog.Builder adb = new AlertDialog.Builder(context);
-
-            adb.setTitle("Carregando...");
-            adb.setCancelable(false);
-
-            this.aDialog = adb.create();
-            this.aDialog.show();
-        }
     }
 
     @Override

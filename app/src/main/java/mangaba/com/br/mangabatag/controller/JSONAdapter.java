@@ -11,6 +11,7 @@ import mangaba.com.br.mangabatag.models.History;
 import mangaba.com.br.mangabatag.models.Lesson;
 import mangaba.com.br.mangabatag.models.Progress;
 import mangaba.com.br.mangabatag.models.Student;
+import mangaba.com.br.mangabatag.models.Teatcher;
 import mangaba.com.br.mangabatag.models.User;
 
 /**
@@ -44,7 +45,7 @@ public class JSONAdapter {
                 return this.parseStudent(jsonObject.getJSONObject("student"));
             } else if (jsonObject.getString("userType") == UserType.TEACHER.toString()) {
                 //TODO criar instanciamento de teatcher
-                return this.parseStudent(jsonObject.getJSONObject("teatcher"));
+                return this.parseTeacher(jsonObject.getJSONObject("teatcher"));
             }
         } catch (Exception e) {
 
@@ -58,7 +59,19 @@ public class JSONAdapter {
         History history = this.parseHistory(histroyJson);
         String name = user.getString("name");
         String enrolment = user.getString("enrollment");
-        Student student = new Student(name,enrolment,history);
+        Student student = new Student(name, enrolment, history);
+        ModelController controller = ModelController.getInstance();
+        controller.setUser(student);
+        return student;
+    }
+
+    private Student parseStudent(JSONObject user, Lesson lesson) throws Exception {
+
+        JSONObject histroyJson = user.getJSONObject("history");
+        History history = this.parseHistory(histroyJson, lesson);
+        String name = user.getString("name");
+        String enrolment = user.getString("enrollment");
+        Student student = new Student(name, enrolment, history);
         ModelController controller = ModelController.getInstance();
         controller.setUser(student);
         return student;
@@ -75,6 +88,17 @@ public class JSONAdapter {
         return historyNew;
     }
 
+    private History parseHistory(JSONObject history, Lesson lesson) throws Exception {
+
+        JSONArray progressesJson = history.getJSONArray("progress");
+        List<Progress> progresses = new ArrayList<Progress>();
+        for (int i = 0; i < progressesJson.length(); i++) {
+            progresses.add(this.parseProgress(progressesJson.getJSONObject(i), lesson));
+        }
+        History historyNew = new History(progresses);
+        return historyNew;
+    }
+
     private Progress parseProgress(JSONObject progress) throws Exception {
         JSONObject classRoomJson = progress.getJSONObject("classroom");
         Lesson lesson = this.parseClassroom(classRoomJson);
@@ -83,17 +107,49 @@ public class JSONAdapter {
         return progressNew;
     }
 
-    private User parseTeacher(JSONObject user) throws JSONException {
-        JSONObject classrooms = user.getJSONObject("classrooms");
-        this.parseClassroom(classrooms);
-        return null;
+    private Progress parseProgress(JSONObject progress, Lesson lesson) throws Exception {
+        JSONObject classRoomJson = progress.getJSONObject("classroom");
+        int absences = Integer.parseInt(progress.getString("absenceCount"));
+        Progress progressNew = new Progress(absences, lesson);
+        return progressNew;
     }
 
-    public Lesson parseClassroom(JSONObject classrooms) throws JSONException {
-        String name = classrooms.getString("discipline");
-        String teatcher = classrooms.getString("teacherName");
-        String startHour = classrooms.getString("startHour");
-        String endHour = classrooms.getString("endHour");
+    private Teatcher parseTeacher(JSONObject user) throws Exception {
+        String name = user.getString("name");
+        String enrollment = user.getString("enrollment");
+        Teatcher teatcher = new Teatcher(name, enrollment);
+        JSONArray classrooms = user.getJSONArray("classrooms");
+        ModelController modelController = ModelController.getInstance();
+        for(int i = 0; i < classrooms.length();i++){
+            Lesson lesson = this.parseClassroom(classrooms.getJSONObject(i),teatcher);
+            modelController.addLesson(lesson);
+        }
+        ModelController controller = ModelController.getInstance();
+        controller.setUser(teatcher);
+        return teatcher;
+    }
+
+    private Lesson parseClassroom(JSONObject classroom, Teatcher teatcher) throws Exception {
+        String name = classroom.getString("discipline");
+        String teatcherName = teatcher.getName();
+        String startHour = classroom.getString("startHour");
+        String endHour = classroom.getString("endHour");
+        Lesson lesson = new Lesson(name, teatcherName, startHour, endHour);
+
+        JSONArray students = classroom.getJSONArray("students");
+        for (int i = 0; i < students.length(); i++) {
+            Student student = this.parseStudent(students.getJSONObject(i), lesson);
+            lesson.addStudent(student);
+        }
+        return lesson;
+    }
+
+
+    private Lesson parseClassroom(JSONObject classroom) throws JSONException {
+        String name = classroom.getString("discipline");
+        String teatcher = classroom.getString("teacherName");
+        String startHour = classroom.getString("startHour");
+        String endHour = classroom.getString("endHour");
         Lesson lesson = new Lesson(name, teatcher, startHour, endHour);
         ModelController controller = ModelController.getInstance();
         controller.addLesson(lesson);

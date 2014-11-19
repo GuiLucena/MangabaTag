@@ -7,13 +7,10 @@ import android.util.Log;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.security.auth.login.LoginException;
 
 import mangaba.com.br.mangabatag.util.web.ConnectionMethod;
 import mangaba.com.br.mangabatag.util.web.interfaces.OnConnectionFinished;
@@ -29,15 +26,15 @@ public class ConnectionAdapter extends Thread implements OnConnectionFinished {
         this.listener = listener;
     }
 
-    public void requestUser(UserReceiver listener, String enrolment, String password) throws Exception {
-      // if (!isConected(ctx)) {
-            //throw new DataExeption();
-       //} else {
-           requestUserJson(listener, enrolment,password);
-       //}
+    public void requestUser(UserReceiver listener, Context ctx, String enrolment, String password) throws Exception {
+        if (!isConected(ctx)) {
+            throw new DataExeption();
+        } else {
+            requestUserJson(enrolment, password);
+        }
     }
 
-    private void requestUserJson(UserReceiver listener, String enrolment, String password) throws Exception {
+    private void requestUserJson(String enrolment, String password) throws Exception {
         List<NameValuePair> parameterList = new ArrayList<NameValuePair>();
         parameterList.add(new BasicNameValuePair("enrollment", enrolment));
         parameterList.add(new BasicNameValuePair("password", password));
@@ -59,24 +56,22 @@ public class ConnectionAdapter extends Thread implements OnConnectionFinished {
         return true;
     }
 
-
     @Override
-    public void onConnectionFinished(JSONObject response){
-        if(response != null){
+    public void onConnectionFinished(JSONObject response) {
+        if (response != null) {
             this.createUser(response);
-        }
-        else{
+        } else {
             listener.onUserReceived(null);
         }
     }
 
-    private void createUser(JSONObject user){
+    private void createUser(JSONObject user) {
         JSONAdapter adapter = new JSONAdapter();
-        if(adapter.authenticateJSON(user)){
+        if (adapter.authenticateJSON(user)) {
             Log.e(getClass().getCanonicalName(), user.toString());
             try {
                 listener.onUserReceived(adapter.parseUser(user));
-            }catch(Exception e){
+            } catch (Exception e) {
 
             }
         }

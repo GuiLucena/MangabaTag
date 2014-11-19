@@ -32,7 +32,7 @@ public class TestAdapter {
 
         Lesson lessonAux;
         List<Progress> progresses = new ArrayList<Progress>();
-        lessonAux = generateLesson("programação orientada a gambiarra", "TJ", "A", "B");
+        lessonAux = generateLesson("programação orientada a gambiarra", "TorcidaJoven", "A", "B");
         progresses.add(new Progress(10, lessonAux));
         lessonAux = generateLesson("Arquitetura e organizaçao de pcs", "Sergio Decepcionado", "C", "D");
         progresses.add(new Progress(18, lessonAux));
@@ -62,4 +62,18 @@ public class TestAdapter {
         Student student = generateStudent(name, enrolment, progresses);
         return student;
     }
+
+    public void LoginTeatcher(UserReceiver userReceiver, String enrollment) {
+        Teatcher teatcher = this.generateTeatcher("TorcidaJovem", enrollment);
+        Lesson lesson = generateLesson("programação orientada a gambiarra", "TorcidaJoven", "A", "B");
+        Progress progress = new Progress(10, lesson);
+        History history = new History(progress);
+        Student student = new Student("guri", "2013108226", history);
+        lesson.addStudent(student);
+        ModelController modelController = ModelController.getInstance();
+        modelController.setUser(teatcher);
+        modelController.addLesson(lesson);
+        userReceiver.onUserReceived(teatcher);
+    }
+
 }

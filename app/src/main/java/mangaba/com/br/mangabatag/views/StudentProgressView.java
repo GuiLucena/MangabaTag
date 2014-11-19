@@ -24,6 +24,7 @@ public class StudentProgressView extends Activity {
     protected void onCreate(Bundle savedStateInstance) {
         super.onCreate(savedStateInstance);
         setContentView(R.layout.student_progress);
+        this.model = ModelController.getInstance();
 
         TextView absences = (TextView) findViewById(R.id.absences);
         TextView firstGq = (TextView) findViewById(R.id.firstGQgrad);

@@ -19,7 +19,7 @@ import mangaba.com.br.mangabatag.models.Student;
 /**
  * Created by GuilhermeLucena on 06/10/2014.
  */
-public class StudentListView extends ListActivity implements OnItemClickListener {
+public class StudentsListView extends ListActivity implements OnItemClickListener {
 
     private ModelController model;
     private List<Student> lessonStudents;
@@ -32,11 +32,11 @@ public class StudentListView extends ListActivity implements OnItemClickListener
         Intent intent = getIntent();
         this.lesson = getLesson(intent.getStringExtra("lessonName"));
         this.lessonStudents = this.lesson.getStudents();
-
-        getActionBar().setTitle(intent.getStringExtra("lesson"));
+        getActionBar().setTitle(intent.getStringExtra("lessonName"));
         ArrayAdapter<Student> adapter = new ArrayAdapter<Student>(this, android.R.layout.simple_list_item_1, this.lessonStudents);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
+
 
     }
 
