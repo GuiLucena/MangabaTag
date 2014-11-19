@@ -66,7 +66,7 @@ public class ConnectionAdapter extends Thread implements OnConnectionFinished {
     }
 
     private void createUser(JSONObject user) {
-        JSONAdapter adapter = new JSONAdapter();
+        JSONBuilder adapter = new JSONBuilder();
         if (adapter.authenticateJSON(user)) {
             Log.e(getClass().getCanonicalName(), user.toString());
             try {

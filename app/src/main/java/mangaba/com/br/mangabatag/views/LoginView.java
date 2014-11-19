@@ -12,10 +12,11 @@ import mangaba.com.br.mangabatag.R;
 import mangaba.com.br.mangabatag.controller.InvalidPasswordExeption;
 import mangaba.com.br.mangabatag.controller.LoginController;
 import mangaba.com.br.mangabatag.controller.ModelController;
+import mangaba.com.br.mangabatag.controller.observer;
 import mangaba.com.br.mangabatag.models.User;
 
 
-public class LoginView extends Activity {
+public class LoginView extends Activity implements observer{
 
     private EditText matriculaEdit;
     private EditText senhaEdit;

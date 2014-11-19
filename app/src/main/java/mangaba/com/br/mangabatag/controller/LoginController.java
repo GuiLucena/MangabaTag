@@ -10,9 +10,9 @@ import mangaba.com.br.mangabatag.views.LoginView;
  */
 public class LoginController implements UserReceiver {
 
-    private LoginView view;
+    private observer view;
 
-    public LoginController(LoginView view) {
+    public LoginController(observer view) {
         this.view = view;
     }
 
@@ -21,7 +21,7 @@ public class LoginController implements UserReceiver {
             throw new InvalidPasswordExeption("invalid passoword");
         }
         if (enrolment.equals("1234") && password.equals("teste")) {
-            this.loginTeatcher(enrolment);
+             this.loginTeatcher(enrolment);
         } else {
             ConnectionAdapter adapter = new ConnectionAdapter(this);
             adapter.requestUser(this, ctx, enrolment, password);

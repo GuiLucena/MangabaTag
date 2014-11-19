@@ -17,12 +17,12 @@ import mangaba.com.br.mangabatag.models.User;
 /**
  * Created by GuilhermeLucena on 20/09/2014.
  */
-public class JSONAdapter {
+public class JSONBuilder {
 
     private List<Lesson> turmas;
 
 
-    public JSONAdapter() {
+    public JSONBuilder() {
 
     }
 
@@ -44,7 +44,6 @@ public class JSONAdapter {
             if (jsonObject.getString("type").equals("br.unicap.projeto.model.Student")) {
                 return this.parseStudent(jsonObject.getJSONObject("student"));
             } else if (jsonObject.getString("userType") == UserType.TEACHER.toString()) {
-                //TODO criar instanciamento de teatcher
                 return this.parseTeacher(jsonObject.getJSONObject("teatcher"));
             }
         } catch (Exception e) {
