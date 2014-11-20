@@ -1,10 +1,5 @@
 package mangaba.com.br.mangabatag.models;
 
-import android.os.Parcelable;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +42,8 @@ public class Lesson implements Serializable {
         return students;
     }
 
-    public void  addStudent(Student student){
-        if(students == null){
+    public void addStudent(Student student) {
+        if (students == null) {
             students = new ArrayList<Student>();
         }
         students.add(student);

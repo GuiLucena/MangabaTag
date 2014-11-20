@@ -119,8 +119,8 @@ public class JSONBuilder {
         Teatcher teatcher = new Teatcher(name, enrollment);
         JSONArray classrooms = user.getJSONArray("classrooms");
         ModelController modelController = ModelController.getInstance();
-        for(int i = 0; i < classrooms.length();i++){
-            Lesson lesson = this.parseClassroom(classrooms.getJSONObject(i),teatcher);
+        for (int i = 0; i < classrooms.length(); i++) {
+            Lesson lesson = this.parseClassroom(classrooms.getJSONObject(i), teatcher);
             modelController.addLesson(lesson);
         }
         ModelController controller = ModelController.getInstance();

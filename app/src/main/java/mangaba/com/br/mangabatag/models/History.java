@@ -14,7 +14,7 @@ public class History {
         this.courseProgresses = courseProgresses;
     }
 
-    public History(Progress progress){
+    public History(Progress progress) {
         this.courseProgresses = new ArrayList<Progress>();
         this.courseProgresses.add(progress);
     }

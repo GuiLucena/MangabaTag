@@ -1,7 +1,5 @@
 package mangaba.com.br.mangabatag.models;
 
-import java.util.List;
-
 /**
  * Created by GuilhermeLucena on 20/09/2014.
  */

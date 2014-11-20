@@ -40,11 +40,11 @@ public class StudentCourseProgressView extends Activity {
         Student student = (Student) this.model.getUser();
         this.studentData = student.getSingleProgress(turmaNome);
 
-        this.updateScreen();
+        this.updateView();
 
     }
 
-    private void updateScreen() {
+    private void updateView() {
         if (studentData != null) {
             getActionBar().setTitle(this.studentData.toString());
             this.horario.setText(this.studentData.getLesson().getStartHour() + "~" + this.studentData.getLesson().getEndHour());

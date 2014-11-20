@@ -70,10 +70,12 @@ public class ConnectionAdapter extends Thread implements OnConnectionFinished {
         if (adapter.authenticateJSON(user)) {
             Log.e(getClass().getCanonicalName(), user.toString());
             try {
-                listener.onUserReceived(adapter.parseUser(user));
+                this.listener.onUserReceived(adapter.parseUser(user));
             } catch (Exception e) {
-
+                this.listener.onUserReceived(null);
             }
+        } else {
+            this.listener.onUserReceived(null);
         }
     }
 

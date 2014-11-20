@@ -3,7 +3,6 @@ package mangaba.com.br.mangabatag.controller;
 import android.content.Context;
 
 import mangaba.com.br.mangabatag.models.User;
-import mangaba.com.br.mangabatag.views.LoginView;
 
 /**
  * Created by GuilhermeLucena on 27/09/2014.
@@ -21,7 +20,7 @@ public class LoginController implements UserReceiver {
             throw new InvalidPasswordExeption("invalid passoword");
         }
         if (enrolment.equals("1234") && password.equals("teste")) {
-             this.loginTeatcher(enrolment);
+            this.loginTeatcher(enrolment);
         } else {
             ConnectionAdapter adapter = new ConnectionAdapter(this);
             adapter.requestUser(this, ctx, enrolment, password);

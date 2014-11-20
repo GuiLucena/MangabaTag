@@ -17,8 +17,14 @@ import mangaba.com.br.mangabatag.models.Student;
  * Created by GuilhermeLucena on 06/10/2014.
  */
 public class StudentProgressView extends Activity {
-    private Progress studentData;
+    private Progress studentProgress;
     private ModelController model;
+    private TextView absences;
+    private TextView firstGq;
+    private TextView secondGq;
+    private TextView studentSituation;
+    private TextView finalGq;
+    String  studentName;
 
     @Override
     protected void onCreate(Bundle savedStateInstance) {
@@ -26,20 +32,17 @@ public class StudentProgressView extends Activity {
         setContentView(R.layout.student_progress);
         this.model = ModelController.getInstance();
 
-        TextView absences = (TextView) findViewById(R.id.absences);
-        TextView firstGq = (TextView) findViewById(R.id.firstGQgrad);
-        TextView secondGq = (TextView) findViewById(R.id.secondGqGQgrad);
-        TextView finalGq = (TextView) findViewById(R.id.finalGQgrad);
-        TextView studentSituation = (TextView) findViewById(R.id.studentSituation);
+        this.absences = (TextView) findViewById(R.id.absences);
+        this.firstGq = (TextView) findViewById(R.id.firstGQgrad);
+        this.secondGq = (TextView) findViewById(R.id.secondGqGQgrad);
+        this.finalGq = (TextView) findViewById(R.id.finalGQgrad);
+        this.studentSituation = (TextView) findViewById(R.id.studentSituation);
 
         Intent intent = getIntent();
-        this.studentData = getStudentData(intent.getStringExtra("lessonName"), intent.getStringExtra("studentName"));
+        this.studentName = intent.getStringExtra("studentName");
+        this.studentProgress = getStudentData(intent.getStringExtra("lessonName"), this.studentName);
 
-        absences.setText(this.studentData.getAbsences().toString());
-        firstGq.setText(this.studentData.getFirstTest().toString());
-        secondGq.setText(this.studentData.getSecondTest().toString());
-        finalGq.setText(this.studentData.getFinalTest().toString());
-        studentSituation.setText(this.studentData.getCourseSituation().toString());
+        this.updateView();
 
     }
 
@@ -58,4 +61,14 @@ public class StudentProgressView extends Activity {
         }
         return null;
     }
+
+    private void updateView() {
+        getActionBar().setTitle(this.studentName);
+        this.absences.setText(this.studentProgress.getAbsences().toString());
+        this.firstGq.setText(this.studentProgress.getFirstTest().toString());
+        this.secondGq.setText(this.studentProgress.getSecondTest().toString());
+        this.finalGq.setText(this.studentProgress.getFinalTest().toString());
+        this.studentSituation.setText(this.studentProgress.getCourseSituation().toString());
+    }
+
 }
