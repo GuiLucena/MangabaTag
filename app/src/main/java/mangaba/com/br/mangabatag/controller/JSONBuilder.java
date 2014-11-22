@@ -41,9 +41,9 @@ public class JSONBuilder {
 
     public User parseUser(JSONObject jsonObject) {
         try {
-            if (jsonObject.getString("type").equals("br.unicap.projeto.model.Student")) {
+            if (jsonObject.getString("type").equals("Student")) {
                 return this.parseStudent(jsonObject.getJSONObject("student"));
-            } else if (jsonObject.getString("userType") == UserType.TEACHER.toString()) {
+            } else if (jsonObject.getString("type") == UserType.TEACHER.toString()) {
                 return this.parseTeacher(jsonObject.getJSONObject("teatcher"));
             }
         } catch (Exception e) {

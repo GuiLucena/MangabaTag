@@ -22,7 +22,7 @@ public class Progress {
         Random random = new Random();
         this.firstTest = random.nextInt(11);
         this.secondTest = random.nextInt(11);
-        this.finalTest = random.nextInt(11);
+        this.finalTest = 0;
         this.setCoeficient();
         this.setCourseSituation();
     }

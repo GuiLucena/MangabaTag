@@ -27,11 +27,11 @@ public class ConnectionAdapter extends Thread implements OnConnectionFinished {
     }
 
     public void requestUser(UserReceiver listener, Context ctx, String enrolment, String password) throws Exception {
-        if (!isConected(ctx)) {
-            throw new DataExeption();
-        } else {
+       //if (!isConected(ctx)) {
+        //    throw new DataExeption();
+       // } else {
             requestUserJson(enrolment, password);
-        }
+       // }
     }
 
     private void requestUserJson(String enrolment, String password) throws Exception {
@@ -59,6 +59,7 @@ public class ConnectionAdapter extends Thread implements OnConnectionFinished {
     @Override
     public void onConnectionFinished(JSONObject response) {
         if (response != null) {
+            Log.e(getClass().getCanonicalName(), response.toString());
             this.createUser(response);
         } else {
             listener.onUserReceived(null);

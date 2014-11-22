@@ -44,5 +44,8 @@ public class ModelController {
         return lessons;
     }
 
-
+    public void clearModels(){
+        this.lessons = null;
+        this.user = null;
+    }
 }

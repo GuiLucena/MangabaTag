@@ -19,17 +19,9 @@ public class LoginController implements UserReceiver {
         if (enrolment.equals("") || password.equals("")) {
             throw new InvalidPasswordExeption("invalid passoword");
         }
-        if (enrolment.equals("1234") && password.equals("teste")) {
-            this.loginTeatcher(enrolment);
-        } else {
-            ConnectionAdapter adapter = new ConnectionAdapter(this);
-            adapter.requestUser(this, ctx, enrolment, password);
-        }
-    }
+        ConnectionAdapter adapter = new ConnectionAdapter(this);
+        adapter.requestUser(this, ctx, enrolment, password);
 
-    private void loginTeatcher(String enrolment) {
-        TestAdapter adapter = new TestAdapter();
-        adapter.LoginTeatcher(this, enrolment);
     }
 
     @Override

@@ -39,8 +39,10 @@ public class LoginView extends Activity implements observer{
 
         try {
             this.launchProgressDialog(this);
-            loginController.login(this, matricula, "teste");
+            this.model.clearModels();
+            loginController.login(this, matricula, senha);
         } catch (Exception e) {
+            this.pDialog.dismiss();
             if (e instanceof InvalidPasswordExeption) {
                 Toast.makeText(this, "Senha ou matricula invalidas", Toast.LENGTH_SHORT).show();
             } else {
@@ -54,7 +56,8 @@ public class LoginView extends Activity implements observer{
         if (user != null) {
             Toast.makeText(this, "Logado como " + model.getUser().getName(), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, LessonsListView.class));
-            finish();
+            this.matriculaEdit.setText("");
+            this.senhaEdit.setText("");
         } else {
             Toast.makeText(this, "Falha ao obter informações", Toast.LENGTH_SHORT).show();
         }
