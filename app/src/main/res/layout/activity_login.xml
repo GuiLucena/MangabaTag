@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center_vertical"
-    android:background="#fff6ffb9">
+    android:background="#ffff07e7">
 
 
     <EditText

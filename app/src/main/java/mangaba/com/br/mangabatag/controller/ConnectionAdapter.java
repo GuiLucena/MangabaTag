@@ -62,6 +62,7 @@ public class ConnectionAdapter extends Thread implements OnConnectionFinished {
             Log.e(getClass().getCanonicalName(), response.toString());
             this.createUser(response);
         } else {
+            Log.e(getClass().getCanonicalName(), "porra caralho");
             listener.onUserReceived(null);
         }
     }
